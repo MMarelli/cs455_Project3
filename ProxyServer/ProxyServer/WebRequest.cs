@@ -22,6 +22,23 @@ namespace ProxyServer
         public string Hostname { get; set; }
         public int Port { get; set; }
 
+        public string HeaderMaker
+        {
+            get
+            {
+                StringBuilder header = new StringBuilder();
+                header.AppendFormat("{0} {1} {2}\r\n", Method, URI, Version);
+                foreach(var x in Headers)
+                {
+                    if(x.Key != "Accept-Encoding")
+                    {
+                        header.AppendFormat("{0}: {1}\r\n", x.Key, x.Value);
+                    }
+                }
+                header.AppendLine();
+                return header.ToString();
+            }
+        }
         public WebRequest(NetworkStream s)
         {
 
@@ -205,7 +222,7 @@ namespace ProxyServer
                         x = x.Replace("\r\n", "");
                     }
                     int length = Convert.ToInt32(x, 16) + 2; //read and send the next bytes plus account for the trailing CRLF
-                    while(length > 0)
+                    while (length > 0)
                     {
                         buf = new byte[length];
                         length -= BodyStream.Read(buf, 0, length);
@@ -216,6 +233,7 @@ namespace ProxyServer
             else
             {
                 ConcatStream request = new ConcatStream(new MemoryStream(Encoding.ASCII.GetBytes(Header)), BodyStream);
+                //ConcatStream request = new ConcatStream(new MemoryStream(Encoding.ASCII.GetBytes(HeaderMaker)), BodyStream);
                 byte[] buf = new byte[1024];
                 int bRead = request.Read(buf, 0, 1024);
                 while (bRead != 0)

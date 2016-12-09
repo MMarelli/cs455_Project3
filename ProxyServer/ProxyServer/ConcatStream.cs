@@ -141,7 +141,7 @@ namespace ProxyServer
                     int read;
 
                     NetworkStream s = _Second as NetworkStream; //had to add this to prevent reading an empty Network stream
-                    if (s != null && !s.DataAvailable)
+                    if (s != null && !s.DataAvailable && Consturctor.withoutLen == _C || Consturctor.withLen == _C && _Position >= Length)
                     {
                         return i;
                     }

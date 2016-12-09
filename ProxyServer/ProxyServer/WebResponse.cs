@@ -97,10 +97,10 @@ namespace ProxyServer
                             EOH = true;
                             builder.Clear(); //clear last line break
                             i++; //increment to start of body
-
+                            
                             while (i < bRead) //read the start of the body in
                             {
-                                builder.Append((char)buffer[i]);
+                                builder.Append(buffer[i]);
                                 i++;
                             }
                             lines.Add(builder.ToString()); //and the start of the body to the end of the request.
@@ -194,22 +194,37 @@ namespace ProxyServer
             }
             else
             {
-                ConcatStream request = new ConcatStream(new MemoryStream(Encoding.ASCII.GetBytes(Header)), BodyStream);
-                byte[] buf = new byte[1024];
-                int bRead = request.Read(buf, 0, 1024);
-                while (bRead != 0)
+                byte[] header = Encoding.ASCII.GetBytes(Header);
+                ns.Write(header, 0, header.Length);
+                byte[] buf = readStream();
+                try
                 {
-                    try
-                    {
-                        ns.Write(buf, 0, bRead);
-                        bRead = request.Read(buf, 0, 1024);
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
+                    ns.Write(buf, 0, buf.Length);
+                }
+                catch (Exception e)
+                {
+                    throw e;
                 }
             }
+        }
+        public byte[] readStream()
+        {
+            byte[] buf = new byte[1024];
+            var ms = new MemoryStream();
+            int bRead = BodyStream.Read(buf, 0, 1024);
+            while (bRead != 0)
+            {
+                try
+                {
+                    ms.Write(buf, 0, bRead);
+                    bRead = BodyStream.Read(buf, 0, 1024);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            return ms.GetBuffer();
         }
     }
 }

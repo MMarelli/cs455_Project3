@@ -21,8 +21,7 @@ namespace ProxyServer
             while (true)
             {
                 TcpClient client = _Listener.AcceptTcpClient();
-                Thread runner = new Thread(() => ClientRunner(client));
-                runner.Start();
+                ThreadPool.QueueUserWorkItem(o => ClientRunner(client));
             }
         }
 
