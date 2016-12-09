@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CWIcompparer.cs" />
+    <Compile Include="WebBase.cs" />
     <Compile Include="WebResponse.cs" />
     <Compile Include="WebRequest.cs" />
     <Compile Include="ConcatStream.cs" />
