@@ -4,3 +4,6 @@ C:\Users\Michael\OneDrive\Documents\CS455\cs455_Project3\ProxyServer\ProxyServer
 C:\Users\Michael\OneDrive\Documents\CS455\cs455_Project3\ProxyServer\ProxyServer\obj\Debug\ProxyServer.csprojResolveAssemblyReference.cache
 C:\Users\Michael\OneDrive\Documents\CS455\cs455_Project3\ProxyServer\ProxyServer\obj\Debug\ProxyServer.exe
 C:\Users\Michael\OneDrive\Documents\CS455\cs455_Project3\ProxyServer\ProxyServer\obj\Debug\ProxyServer.pdb
+C:\Users\marel\OneDrive\Documents\CS455\cs455_Project3\ProxyServer\ProxyServer\bin\Debug\ProxyServer.exe.config
+C:\Users\marel\OneDrive\Documents\CS455\cs455_Project3\ProxyServer\ProxyServer\obj\Debug\ProxyServer.exe
+C:\Users\marel\OneDrive\Documents\CS455\cs455_Project3\ProxyServer\ProxyServer\obj\Debug\ProxyServer.pdb
