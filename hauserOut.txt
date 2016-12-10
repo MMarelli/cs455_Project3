@@ -1,0 +1,46 @@
+Requtest Header:
+GET http://www.computerhistory.org/internet_history/thumbs/david_clark_t.jpg HTTP/1.1
+Host: www.computerhistory.org
+Proxy-Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
+Accept: image/webp,image/*,*/*;q=0.8
+Referer: http://eecs.wsu.edu/~hauser/cs455/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+Cookie: chm=newapp3
+
+
+Response Header:
+HTTP/1.1 404 Not Found
+Server: Apache/2.4.7 (Ubuntu)
+X-Powered-By: PHP/5.5.9-1ubuntu4.20
+Content-Type: text/html
+Content-Length: 12422
+Accept-Ranges: bytes
+Date: Sat, 10 Dec 2016 01:13:29 GMT
+X-Varnish: 288270156
+Age: 0
+Via: 1.1 varnish
+Connection: close
+
+
+Requtest Header:
+GET http://eecs.wsu.edu/favicon.ico HTTP/1.1
+Host: eecs.wsu.edu
+Proxy-Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
+Accept: */*
+Referer: http://eecs.wsu.edu/~hauser/cs455/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+
+
+Response Header:
+HTTP/1.1 302 Found
+Date: Sat, 10 Dec 2016 01:13:46 GMT
+Server: Apache/2.4.6 (CentOS) mod_fcgid/2.3.9 PHP/5.4.16
+Location: http://school.eecs.wsu.edu/favicon.ico
+Content-Length: 222
+Content-Type: text/html; charset=iso-8859-1
+
+

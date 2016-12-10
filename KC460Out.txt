@@ -1,0 +1,61 @@
+Requtest Header:
+GET http://eecs.wsu.edu/~cs460/ HTTP/1.1
+Host: eecs.wsu.edu
+Proxy-Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+
+
+Response Header:
+HTTP/1.1 200 OK
+Date: Sat, 10 Dec 2016 01:30:23 GMT
+Server: Apache/2.4.6 (CentOS) mod_fcgid/2.3.9 PHP/5.4.16
+Last-Modified: Mon, 28 Nov 2016 15:12:45 GMT
+ETag: "add-5425de76bc051"
+Accept-Ranges: bytes
+Content-Length: 2781
+Content-Type: text/html
+
+
+Requtest Header:
+GET http://eecs.wsu.edu/~cs460/redball.gif HTTP/1.1
+Host: eecs.wsu.edu
+Proxy-Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
+Accept: image/webp,image/*,*/*;q=0.8
+Referer: http://eecs.wsu.edu/~cs460/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+
+
+Response Header:
+HTTP/1.1 404 Not Found
+Date: Sat, 10 Dec 2016 01:30:23 GMT
+Server: Apache/2.4.6 (CentOS) mod_fcgid/2.3.9 PHP/5.4.16
+Content-Length: 216
+Content-Type: text/html; charset=iso-8859-1
+
+
+Requtest Header:
+GET http://eecs.wsu.edu/favicon.ico HTTP/1.1
+Host: eecs.wsu.edu
+Proxy-Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
+Accept: */*
+Referer: http://eecs.wsu.edu/~cs460/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+
+
+Response Header:
+HTTP/1.1 302 Found
+Date: Sat, 10 Dec 2016 01:30:23 GMT
+Server: Apache/2.4.6 (CentOS) mod_fcgid/2.3.9 PHP/5.4.16
+Location: http://school.eecs.wsu.edu/favicon.ico
+Content-Length: 222
+Content-Type: text/html; charset=iso-8859-1
+
+

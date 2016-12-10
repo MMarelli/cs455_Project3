@@ -13,6 +13,7 @@ namespace ProxyServer
     public static class ProxyServer
     {
         static TcpListener _Listener;
+        static bool _Debug = false;
 
         public static void Start(int port)
         {
@@ -39,27 +40,39 @@ namespace ProxyServer
             }
             catch (Exception e)
             {
-                Console.WriteLine("{0} - {1}", e, e.Message);
+                if (_Debug)
+                {
+                    Console.WriteLine("{0} - {1}", e, e.Message);
+                }
                 client.Close();
                 return;
             }
-            TcpClient host;
+            TcpClient server;
             try
             {
-                Console.WriteLine("connecting to - {0}:{1}", clientRequest.Hostname, clientRequest.Port);
-                host = new TcpClient(clientRequest.Hostname, clientRequest.Port);
+                if (_Debug)
+                {
+                    Console.WriteLine("connecting to - {0}:{1}", clientRequest.Hostname, clientRequest.Port);
+                }
+                server = new TcpClient(clientRequest.Hostname, clientRequest.Port);
             }
-            catch (SocketException e)
+            catch (Exception e)
             {
                 client.Close();
-                Console.WriteLine("{0} - {1}", e, e.Message);
+                if (_Debug)
+                {
+                    Console.WriteLine("{0} - {1}", e, e.Message);
+                }
                 return;
             }
 
-            NetworkStream hostStream = host.GetStream();
-            while (host.Connected && client.Connected)
+            NetworkStream serverStream = server.GetStream();
+            while (server.Connected && client.Connected)
             {
-                Console.WriteLine("client sending request to {0}", clientRequest.Hostname);
+                if (_Debug)
+                {
+                    Console.WriteLine("client sending request to {0}", clientRequest.Hostname);
+                }
                 Console.WriteLine("Requtest Header:\r\n{0}", clientRequest.Header);
                 if (clientRequest.Method == "connect")
                 {
@@ -70,34 +83,37 @@ namespace ProxyServer
                 {
                     try
                     {
-                        clientRequest.Forward(hostStream);
-                        WebResponse hostResponse;
-                        while (!hostStream.DataAvailable && host.Connected && client.Connected) { } //wait until there is somthin available to read
-                        hostResponse = new WebResponse(hostStream);
-                        Console.WriteLine("Response Header:\r\n{0}", hostResponse.Header);
+                        clientRequest.Forward(serverStream);
+                        WebResponse serverResponse;
+                        while (!serverStream.DataAvailable && server.Connected && client.Connected) { } //wait until there is somthin available to read
+                        serverResponse = new WebResponse(serverStream);
+                        Console.WriteLine("Response Header:\r\n{0}", serverResponse.Header);
 
-                        hostResponse.Forward(clientStream);
+                        serverResponse.Forward(clientStream);
 
-                        if (!hostResponse.KeepAlive || !clientRequest.KeepAlive)
+                        if (!serverResponse.KeepAlive || !clientRequest.KeepAlive)
                         {
                             client.Close();
-                            host.Close();
+                            server.Close();
                         }
                         else
                         {
-                            while (!clientStream.DataAvailable && client.Connected && host.Connected) { } //wait until there is somthin available to read
+                            while (!clientStream.DataAvailable && client.Connected && server.Connected) { } //wait until there is somthin available to read
                             clientRequest = new WebRequest(clientStream);
                         }
 
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("{0} - {1}", e, e.Message);
+                        if (_Debug)
+                        {
+                            Console.WriteLine("{0} - {1}", e, e.Message);
+                        }
                         break;
                     }
                 }
             }
-            host.Close();
+            server.Close();
             client.Close();
         }
     }

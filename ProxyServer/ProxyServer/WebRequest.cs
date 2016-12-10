@@ -62,7 +62,10 @@ namespace ProxyServer
                 {
                     Port = int.Parse(help[1].Split('/')[0]);
                 }
-                catch { }
+                catch
+                {
+                    Hostname = hostname.Split('/')[0];
+                }
             }
             else
             {
